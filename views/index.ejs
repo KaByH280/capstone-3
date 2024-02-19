@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %>
+
+<div class="content">
+    <h2>Get lyrics by artist and title</h2>
+    <div class="content__container">
+        <img src="img/vinyl.png" alt="vinyl image">
+        <form id="artistAndTitle" method="post" class="content__form">
+        <label for="artistInput">Artist:</label>
+        <input type="text" id="artistInput" name="artist">
+
+        <label for="titleInput">Title:</label>
+        <input type="text" id="titleInput" name="title">
+
+        <label for="submit"></label>
+        <input id="post" type="submit" value="Get lyrics" formaction="/get-lyrics">
+    </form>
+        <img src="img/vinyl.png" alt="vinyl image">
+    </div>
+<% if (locals.artist && locals.title && locals.lyrics) { %>
+        <h2><%= artist %> - <%= title %></h2>
+        <% lyrics.forEach((line) => { %>
+            <spap><%= line %></spap><br>
+        <% }) %>
+    <% } else if (locals.error) { %>
+        <h2><%= error %></h2>
+    <% } %>
+</div>
+
+<%- include("partials/footer.ejs") %>
